@@ -8,4 +8,5 @@
 Алгоритмы устойчивой сортировки
 ===============================
 
-* Сортировка выбором (`Selection sort <selection_sort.py>`_);
+* Сортировка выбором (`Selection sort <selection_sort.py>`_)
+* Сортировка пузырьком (`Bubble sort <bubble_sort.py>`_)
