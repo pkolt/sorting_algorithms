@@ -24,37 +24,42 @@ http://ru.wikipedia.org/wiki/Сортировка_выбором
 """
 
 
-def selection_sort(it):
-    """Алгоритм без дополнительного выделения памяти"""
+def swap(arr, i1, i2):
+    """Функция меняет местами элементы массива"""
+    temp = arr[i1]
+    arr[i1] = arr[i2]
+    arr[i2] = temp
 
-    # внешний цикл, i – позиция первого неотсортированного элемента на данной итерации
-    for i in range(len(it)):
-        k = i  # k – позиция минимального элемента
 
-        # внутренний цикл, если найден элемент строго меньший текущего минимального,
-        # записываем его индекс как минимальный
-        for j in range(i + 1, len(it)):
-            if it[j] < it[k]:
+def selection_sort(arr):
+    """Сортировка выбором"""
+
+    # кол-во элементов в последовательности
+    n = len(arr)
+
+    # i - позиция неотсортированного элемента на данной итерации
+    for i in xrange(n):
+        k = i  # k - позиция минимального элемента
+
+        # j - позиция элемента который возможно меньше элемента arr[i]
+        for j in xrange(i+1, n):
+            if arr[j] < arr[k]:
                 k = j
-
-        # минимальный элемент не является первым неотсортированным, обмен нужен
         if k != i:
-            temp = it[i]
-            it[i] = it[k]
-            it[k] = temp
-    return it
+            swap(arr, k, i)
+    return arr
 
 
 import time
 import random
 
-inp = list(range(10000))
-random.shuffle(inp)
+arr = list(range(10000))
+random.shuffle(arr)
 
 start_cpu = time.clock()
 start_real = time.time()
 
-out = selection_sort(inp)
+out = selection_sort(arr)
 
 end_cpu = time.clock()
 end_real = time.time()
